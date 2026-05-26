@@ -1,0 +1,9 @@
+{
+  "id": 1779748579656,
+  "commandTimestamp": 1779748579656,
+  "commandDate": "26/05/2026 01:36:19",
+  "createdTimestamp": 1779748591265,
+  "createdDate": "26/05/2026 01:36:31",
+  "description": "Снимок спутника",
+  "filename": "photo_1779748579656.txt"
+}
