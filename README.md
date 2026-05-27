@@ -2,31 +2,64 @@
 
 Система управления спутником с автоматическим восстановлением после сбоев на базе PM2 и Redis.
 
-## 📋 Требования
-
-- Node.js 18+
-- Docker
-- PM2 (`npm install -g pm2`)
-- Git
-
-## 🚀 Быстрый старт
+## 📥 Скачать
 
 ```bash
-# Клонирование
 git clone https://github.com/ваш-username/satellite-project.git
 cd satellite-project
-
-# Установка зависимостей
+🚀 Установка и запуск
+1. Установите зависимости
+bash
 npm install
-
-# Запуск Redis
+2. Запустите Redis
+bash
 docker run -d --name redis -p 6379:6379 --restart always redis
-
-# Запуск проекта
+3. Установите PM2
+bash
+npm install -g pm2
+4. Запустите проект
+bash
 pm2 start ecosystem.config.js
-
-# Открыть веб-интерфейс
-# http://localhost:8080
+5. Откройте веб-интерфейс
+text
+http://localhost:8080
+💻 Системные требования
+Компонент	Требование
+Операционная система	Windows / macOS / Linux
+Node.js	версия 18 или выше
+Docker	для запуска Redis
+PM2	устанавливается глобально
+Оперативная память	от 1 ГБ
+Свободное место	от 100 МБ
+🏗️ Компоненты системы
+Компонент	Порт	Режим	Кол-во	Описание
+orientation	-	cluster	2	Управление ориентацией спутника
+disturbance	-	fork	1	Симулятор дрейфа
+commander	3000	fork	1	Командный API
+scheduler	-	fork	1	Планировщик фото
+gateway	8080	fork	1	Веб-шлюз
+👥 Роли в системе
+Роль	Возможности
+Оператор	Просмотр состояния спутника, отправка команд, управление фото
+Администратор	Управление процессами PM2 (restart/reload/stop/start)
+📡 API эндпоинты
+Commander API (порт 3000)
+Метод	Эндпоинт	Описание
+GET	/api/healthcheck	Проверка доступности
+GET	/api/coords	Получить координаты спутника
+GET	/api/tasks/list	Список задач в очереди
+PUT	/api/tasks/photo	Добавить задачу на фото
+GET	/api/photos/list	Список готовых фото
+DELETE	/api/photos/delete/{id}	Удалить фото
+Gateway API (порт 8080)
+Метод	Эндпоинт	Описание
+GET	/api/status	Полный статус системы
+GET	/api/processes	Список процессов PM2
+POST	/api/command	Отправка команды
+POST	/api/restart/{name}	Перезапуск процесса
+POST	/api/reload/{name}	Zero-downtime reload
+POST	/api/stop/{name}	Остановка процесса
+GET	/api/logs/{name}	Получить логи процесса
 📁 Структура проекта
 text
 satellite-project/
@@ -34,39 +67,31 @@ satellite-project/
 │   └── index.html          # Веб-интерфейс
 ├── storage/                 # Хранилище фото (создаётся автоматически)
 ├── ecosystem.config.js     # Конфигурация PM2
-├── orientation.js          # Управление ориентацией (2 экземпляра)
+├── orientation.js          # Управление ориентацией
 ├── disturbance.js          # Симулятор дрейфа
-├── commander.js            # API команд (порт 3000)
+├── commander.js            # Командный модуль
 ├── scheduler.js            # Планировщик фото
-├── gateway.js              # API шлюз (порт 8080)
+├── gateway.js              # API шлюз
 └── package.json
-
-🎮 Команды PM2
+🛠️ Технологии
+Технология	Назначение
+Node.js	Среда выполнения
+Express	Веб-сервер
+PM2	Менеджер процессов
+Redis	Общая шина данных
+Axios	HTTP-запросы
+🎮 Команды управления
 bash
+# Управление процессами
 pm2 status                # Статус всех процессов
 pm2 logs                  # Просмотр логов
 pm2 restart all           # Перезапуск всех
 pm2 reload scheduler      # Zero-downtime перезагрузка
 pm2 stop all              # Остановка всех
-pm2 delete all            # Удаление всех процессов
 pm2 monit                 # Мониторинг в реальном времени
-🐛 Устранение проблем
-Redis не подключается
-bash
-docker restart redis
-docker exec -it redis redis-cli ping  # Должен вернуть PONG
-Процессы в статусе error
-bash
-pm2 logs --err --lines 30  # Посмотреть ошибки
-pm2 delete all
-pm2 start ecosystem.config.js
-Порт занят
-bash
-# Найти процесс на порту 3000 или 8080
-netstat -ano | findstr :3000
-taskkill /PID <PID> /F
-Модули не найдены
-bash
-npm install
+
+# Управление Redis
+docker restart redis      # Перезапуск Redis
+docker exec -it redis redis-cli ping  # Проверка работы
 📄 Лицензия
 MIT
