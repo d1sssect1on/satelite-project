@@ -125,7 +125,7 @@ satellite-project/
 ## 🎮 Команды управления
 
 ```bash
-ps2 start "name".js --name "name       # Запуск процесса
+pm2 start "name".js --name "name       # Запуск процесса
 pm2 status                             # Статус всех процессов
 pm2 logs                               # Просмотр логов
 pm2 restart all                        # Перезапуск всех процессов
