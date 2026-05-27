@@ -34,6 +34,7 @@ npm install -g pm2
 
 ```bash
 pm2 start ecosystem.config.js
+pm2 start gateway.js --name gateway
 ```
 
 **5. Откройте веб-интерфейс**
@@ -124,15 +125,15 @@ satellite-project/
 ## 🎮 Команды управления
 
 ```bash
-pm2 status                # Статус всех процессов
-pm2 logs                  # Просмотр логов
-pm2 restart all           # Перезапуск всех
-pm2 reload scheduler      # Zero-downtime перезагрузка
-pm2 stop all              # Остановка всех
-pm2 monit                 # Мониторинг в реальном времени
-
-docker restart redis      # Перезапуск Redis
-docker exec -it redis redis-cli ping  # Проверка работы Redis
+ps2 start "name".js --name "name       # Запуск процесса
+pm2 status                             # Статус всех процессов
+pm2 logs                               # Просмотр логов
+pm2 restart all                        # Перезапуск всех процессов
+pm2 reload scheduler                   # Zero-downtime перезагрузка
+pm2 stop all                           # Остановка всех процессов
+pm2 list                               # Мониторинг процессов
+docker restart redis                   # Перезапуск Redis
+docker exec -it redis redis-cli ping   # Проверка работы Redis
 ```
 
 ## 📄 Лицензия
