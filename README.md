@@ -1,10 +1,10 @@
 ## 🛰️ Отказоустойчивое бортовое ПО спутника
 
 ## 📥 Скачать
-Последнюю версию программы можно скачать на странице [Releases](https://github.com/d1sssect1on/satelite-project/releases/tag/v1.0.0).
+Последнюю версию программы можно скачать на странице [Releases](https://github.com/d1sssect1on/satellite-project/releases/tag/v1.0.0).
 ```markdown
-git clone https://github.com/d1sssect1on/satelite-project.git
-cd satelite-project
+git clone https://github.com/d1sssect1on/satellite-project.git
+cd satellite-project
 ```
 
 ## 🚀 Установка и запуск
