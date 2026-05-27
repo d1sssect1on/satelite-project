@@ -3,8 +3,8 @@
 ## 📥 Скачать
 Последнюю версию программы можно скачать на странице [Releases](https://github.com/d1sssect1on/satelite-project/releases/tag/v1.0.0).
 ```markdown
-git clone https://github.com/ваш-username/satellite-project.git
-cd satellite-project
+git clone https://github.com/d1sssect1on/satelite-project.git
+cd satelite-project
 ```
 
 ## 🚀 Установка и запуск
